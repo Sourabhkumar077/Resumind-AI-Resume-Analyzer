@@ -34,8 +34,8 @@ export default function Home() {
   // This content is only shown when loading is false and the user is authenticated.
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
+      <Navbar />
       <section className="main-section">
-        <Navbar />
         <div className="page-heading">
           <h1>Track your applications & resume rating</h1>
           <h2>Review your submissions and check AI powered feedback</h2>
