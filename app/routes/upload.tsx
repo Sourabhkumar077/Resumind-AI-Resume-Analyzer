@@ -1,13 +1,33 @@
 import { useState } from 'react';
-import { Navbar } from '~/components';
+import { Navbar, FileUploader } from '~/components';
 
 const upload = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
+    const [file, setFile] = useState<File | null>(null);
 
     // form handling function
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        return 0;
+        e.preventDefault();
+        const form = e.currentTarget.closest('form');
+        if (!form) return;
+
+        const formData = new FormData(form);
+        const companyName = formData.get('companyName');
+        const jobTitle = formData.get('job-title');
+        const jobDescription = formData.get('job-description');
+
+        console.log({
+            companyName,
+            jobTitle,
+            jobDescription,
+            file
+        });
+        
+    }
+
+    const handleFileSelect = (file: File | null) => {
+        setFile(file);
     }
 
 
@@ -39,14 +59,14 @@ const upload = () => {
                                 </div>
                                 <div className='form-div'>
                                     <label htmlFor="job-description">Job description</label>
-                                    <textarea maxLength={5} rows={5} name="job-description" placeholder='Enter job description'></textarea>
+                                    <textarea  rows={5} name="job-description" placeholder='Enter job description'></textarea>
                                 </div>
                                 <div className='form-div'>
                                     <label htmlFor="uploader">Upload your Resume</label>
-                                    <div>upload</div>
+                                    <FileUploader onFileSelect={handleFileSelect} />
                                 </div>
 
-                                <button className='primary-button' type='submit'>Analyizeresume</button>
+                                <button className='primary-button' type='submit'>Analyize resume</button>
                             </form>
                         )
                     }
