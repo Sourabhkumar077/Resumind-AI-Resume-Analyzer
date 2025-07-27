@@ -21,12 +21,12 @@ const upload = () => {
     }
     const handleAnalyze = async ({ companyName, jobTitle, jobDescription, file }: { companyName: string, jobTitle: string, jobDescription: string, file: File }) => {
         setIsProcessing(true);
-        setStatusText("uloading the file...");
+        setStatusText("Uploading the file...");
 
         const uploadFile = await fs.upload([file]);
         if (!uploadFile) return setStatusText("Error :: uploading file");
 
-        setStatusText('converting to image');
+        setStatusText('converting into image');
         const imageFile = await convertPdfToImage(file);
 
         if (!imageFile.file) return setStatusText("Error :: converting to image");
@@ -91,9 +91,6 @@ const upload = () => {
         handleAnalyze({ companyName, jobTitle, jobDescription, file });
 
     }
-
-
-
 
     return (
         <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
