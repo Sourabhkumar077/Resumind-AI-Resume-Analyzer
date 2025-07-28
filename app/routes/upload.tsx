@@ -7,7 +7,7 @@ import { generateUUID } from '~/lib/utils';
 import { prepareInstructions } from '../../constants';
 
 
-const upload = () => {
+const Upload = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState('');
     const [file, setFile] = useState<File | null>(null);
@@ -62,9 +62,10 @@ const upload = () => {
             : feedback.message.content[0].text;
 
         data.feedback = JSON.parse(feedbackText);
-        await kv.set(`resume:{uuid}`, JSON.stringify(data));
+        await kv.set(`resume:${uuid}`, JSON.stringify(data)); // second save
         setStatusText("Analysis completed! redirecting...");
-        // console.log(data);
+        
+        console.log("Resume Data = " ,data);
         navigate(`/resume/${uuid}`);
 
     }
@@ -137,4 +138,4 @@ const upload = () => {
     )
 }
 
-export default upload
+export default Upload;

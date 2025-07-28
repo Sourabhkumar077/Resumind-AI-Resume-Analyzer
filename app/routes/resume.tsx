@@ -25,9 +25,7 @@ const Resume = () => {
     useEffect(() => {
         const loadResume = async () => {
             const resume = await kv.get(`resume:${id}`);
-
             if(!resume) return;
-
             const data = JSON.parse(resume);
 
             const resumeBlob = await fs.read(data.resumePath);
@@ -42,8 +40,9 @@ const Resume = () => {
             const imageUrl = URL.createObjectURL(imageBlob);
             setImageUrl(imageUrl);
 
-            setFeedback(data.feedback);
-            console.log({resumeUrl, imageUrl, feedback: data.feedback });
+            setFeedback(typeof data.feedback === "string" ? JSON.parse(data.feedback) : data.feedback);
+            console.log("Loaded feedback:", data.feedback, typeof data.feedback);
+            console.log("Loaded resume data:", data);
         }
 
         loadResume();
@@ -81,6 +80,7 @@ const Resume = () => {
                         </div>
                     ) : (
                         <img src="/images/resume-scan-2.gif" className="w-full" />
+                        
                     )}
                 </section>
             </div>
