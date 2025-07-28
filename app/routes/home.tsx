@@ -40,7 +40,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <main className="min-h-screen bg-[url('/images/bg-main.svg')] bg-cover flex justify-center items-center">
-   <h1 className="text-white text-2xl">Loading...</h1>
+        <h1 className="text-white text-2xl">Loading...</h1>
       </main>
     );
   }
@@ -49,12 +49,16 @@ export default function Home() {
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover min-h-screen">
       <Navbar />
+
       <section className="main-section">
-        {!loadingResumes && resumes?.length === 0 ? (
-          <h2>No resumes found. Upload your first resume to get feedback.</h2>
-        ) : (
-          <h2>Review your submissions and check AI-powered feedback.</h2>
-        )}
+        <div className="page-heading py-16">
+        <h1>Track Your Applications & Resume Ratings</h1>
+          {!loadingResumes && resumes?.length === 0 ? (
+            <h2>No resumes found. Upload your first resume to get feedback.</h2>
+          ) : (
+            <h2>Review your submissions and check AI-powered feedback.</h2>
+          )}
+        </div>
 
         {loadingResumes && (
           <div className="flex flex-col items-center justify-center">
