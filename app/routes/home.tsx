@@ -40,7 +40,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <main className="min-h-screen bg-[url('/images/bg-main.svg')] bg-cover flex justify-center items-center">
-        <h1 className="text-white text-2xl">Loading...</h1>
+   <h1 className="text-white text-2xl">Loading...</h1>
       </main>
     );
   }
