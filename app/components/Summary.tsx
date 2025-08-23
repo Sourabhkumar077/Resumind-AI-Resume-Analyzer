@@ -1,4 +1,5 @@
 import { ScoreGauge, ScoreBadge } from "../components";
+import React from "react";
 
 const Category = ({ title, score }: { title: string, score: number }) => {
   const textColor = score > 70 ? 'text-green-600'
@@ -40,4 +41,4 @@ const Summary = ({ feedback }: { feedback: Feedback }) => {
   );
 };
 
-export default Summary;
+export default React.memo(Summary);

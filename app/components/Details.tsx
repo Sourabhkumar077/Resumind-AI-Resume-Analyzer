@@ -1,4 +1,4 @@
-
+import React from "react";
 import { cn } from "~/lib/utils";
 import {
   Accordion,
@@ -160,4 +160,4 @@ const Details = ({ feedback }: { feedback: Feedback }) => {
   );
 };
 
-export default Details;
+export default React.memo(Details);
